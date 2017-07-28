@@ -3,9 +3,18 @@
     <ion-title>
       Movies
     </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addMovie()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    This is the main Movies page. 
+    <ion-list>
+      <ion-item *ngFor="let movie of movies | async" (click)="showOptions(movie.$key, movie.title)">
+        {{movie.title}}
+      </ion-item>
+    </ion-list> 
 </ion-content>
