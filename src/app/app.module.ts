@@ -11,6 +11,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//Importing the AF2 Module to use Firebase
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyBoMfA5Ks4OZETQc8cHl_5B2PMuxwzGeEQ",
+    authDomain: "bidview-project.firebaseapp.com",
+    databaseURL: "https://bidview-project.firebaseio.com",
+    projectId: "bidview-project",
+    storageBucket: "bidview-project.appspot.com",
+    messagingSenderId: "236492093261"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
