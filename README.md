@@ -24,3 +24,5 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+API key info for movie finder can be found at https://www.themoviedb.org/settings/api
+
