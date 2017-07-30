@@ -21,7 +21,8 @@ export class MoviesPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Title'
+          placeholder: 'Title',
+        
         },
       ],
       buttons: [
@@ -109,4 +110,4 @@ updateMovie(movieId, movieTitle) {
 }
 
 
-}
+} // The End
