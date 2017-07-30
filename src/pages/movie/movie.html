@@ -12,9 +12,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-      <ion-item *ngFor="let movie of movies | async" (click)="showOptions(movie.$key, movie.title)">
-        {{movie.title}}
-      </ion-item>
-    </ion-list> 
+  <ion-item (click)="showOptions(movie.$key, movie.title)">
+   {{movie.title}}
+  </ion-item>
 </ion-content>

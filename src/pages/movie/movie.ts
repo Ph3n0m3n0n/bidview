@@ -3,10 +3,10 @@ import { NavController, AlertController, ActionSheetController } from 'ionic-ang
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
-  selector: 'page-movies',
-  templateUrl: 'movies.html'
+  selector: 'page-movie',
+  templateUrl: 'movie.html'
 })
-export class MoviesPage {
+export class MoviePage {
 
   movies: FirebaseListObservable<any>;
 
@@ -111,3 +111,4 @@ updateMovie(movieId, movieTitle) {
 
 
 } // The End
+
