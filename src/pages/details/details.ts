@@ -3,10 +3,10 @@ import { NavController, AlertController, ActionSheetController } from 'ionic-ang
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
-  selector: 'page-movie',
-  templateUrl: 'movie.html'
+  selector: 'page-details',
+  templateUrl: 'details.html'
 })
-export class MoviePage {
+export class DetailsPage {
 
   movies: FirebaseListObservable<any>;
 
