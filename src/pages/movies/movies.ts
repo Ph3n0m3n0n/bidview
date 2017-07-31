@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-movies',
@@ -14,7 +15,7 @@ export class MoviesPage {
     this.movies = aDB.list('/movies');
   }
 
-  addMovie(){
+    addMovie(){
     let prompt = this.alertCtrl.create({
       title: 'Movie Title',
       message: 'Enter a movie title',
@@ -45,69 +46,13 @@ export class MoviesPage {
     prompt.present();
   }
 
-  showOptions(movieId, movieTitle) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'What do you want to do?',
-      buttons: [
-        {
-          text: 'Delete Movie',
-          role: 'destructive',
-          handler: () => {
-            this.removeMovie(movieId);
-          }
-        }, {
-          text: 'Update title',
-          handler: () => {
-            this.updateMovie(movieId, movieTitle);
-          }
-        },{
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-              console.log('Cancelled');
-          }
-        }
-      ]
 
+  itemTapped(event, movie) {
+    this.navCtrl.push(DetailsPage, {
+      item: movie
     });
-    actionSheet.present();
   }
-
-  removeMovie(movieId) {
-    this.movies.remove(movieId);
-  }
-
-
-updateMovie(movieId, movieTitle) {
-  let prompt = this.alertCtrl.create({
-    title: 'Movie Title',
-    message: 'Update Movie Title',
-    inputs: [
-      {
-        name: 'title',
-        placeholder: 'Title',
-        value: movieTitle
-      },
-    ],
-    buttons: [
-      {
-        text: 'Cancel',
-        handler: data => {
-          console.log('Cancelled');
-        }
-      },
-      {
-        text: 'Save',
-        handler: data => {
-          this.movies.update(movieId, {
-            title: data.title
-          });
-        }
-      }
-    ]
-  });
-  prompt.present();
-}
 
 
 } // The End
+
