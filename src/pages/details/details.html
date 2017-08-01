@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item (click)="showOptions(movie.$key, movie.title)">
-   <!-- {{movie.title}} -->
+  <ion-item *ngIf="movie" (click)="showOptions(movie.$key, movie.title)">
+      {{movie.title}}   
   </ion-item>
 </ion-content>

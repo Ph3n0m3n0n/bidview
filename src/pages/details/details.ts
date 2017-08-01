@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
@@ -10,8 +10,8 @@ export class DetailsPage {
 
   movies: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, aDB: AngularFireDatabase, public actionSheetCtrl: ActionSheetController) {
-    this.movies = aDB.list('/movies');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, aDB: AngularFireDatabase, public actionSheetCtrl: ActionSheetController) {
+    this.movies = navParams.get('/movie');
   }
 
   addMovie(){
