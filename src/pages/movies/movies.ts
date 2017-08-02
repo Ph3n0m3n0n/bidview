@@ -15,7 +15,7 @@ export class MoviesPage {
     this.movies = aDB.list('/movies');
   }
 
-    addMovie(){
+addMovie(){
     let prompt = this.alertCtrl.create({
       title: 'Movie Title',
       message: 'Enter a movie title',

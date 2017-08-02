@@ -12,10 +12,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item *ngIf="movie" (click)="showOptions(movie.$key, movie.title)">
-      
-<!--
-    <img src="{{movie.poster}}"/>
+  <ion-item *ngIf="movie" (click)="showOptions(movie.$key, movie)">
+     <img src="{{movie.poster}}"/>
       <ion-card-content>
         <h2 class="card-title">{{ movie.title }}</h2>
         <p>{{ movie.year }}, {{ movie.genre }}</p>
@@ -25,7 +23,11 @@
       <h3>Description</h3><br>
         <ion-note>{{ movie.description }}</ion-note><br>
     </ion-item>
--->
+
+    <ion-item>
+      <h3>Main Actor/Actress</h3><br>
+        <ion-note>{{ movie.actor }}</ion-note><br>
+    </ion-item>
 
   </ion-item>
  </ion-content> 
