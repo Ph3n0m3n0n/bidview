@@ -23,7 +23,34 @@ export class MoviesPage {
         {
           name: 'title',
           placeholder: 'Title',
-        
+        },
+                {
+          name: 'year',
+          placeholder: 'Year',
+        },
+                {
+          name: 'length',
+          placeholder: 'Length',
+        },
+                {
+          name: 'genre',
+          placeholder: 'Genre',
+        },
+                {
+          name: 'description',
+          placeholder: 'Description',
+        },
+                {
+          name: 'actor',
+          placeholder: 'Enter an actor name',
+        },
+                {
+          name: 'poster',
+          placeholder: 'Image URL',
+        },
+                {
+          name: 'thumbnail',
+          placeholder: 'Image Thumbnail URL',
         },
       ],
       buttons: [
@@ -37,7 +64,14 @@ export class MoviesPage {
           text: 'Save',
           handler: data => {
             this.movies.push({
-              title: data.title
+              title: data.title,
+              year: data.year,
+              length: data.length,
+              genre: data.genre,
+              description: data.description,
+              actor: data.actor,
+              poster: data.poster,
+              thumbnail: data.thumbnail,
             });
           }
         }
@@ -47,11 +81,15 @@ export class MoviesPage {
   }
 
 
-  itemTapped(event, movie) {
-    this.navCtrl.push(DetailsPage, {
-      item: movie
-    });
-  }
+    openmovieDetail(movie: any) {
+        this.navCtrl.push(DetailsPage, movie);
+    }
+
+  // itemTapped(event, movie) {
+  //   this.navCtrl.push(DetailsPage, {
+  //     item: movie
+  //   });
+  // }
 
 
 } // The End
