@@ -9,9 +9,14 @@ import { DetailsPage } from '../details/details';
 })
 export class MoviesPage {
 
-  movies: FirebaseListObservable<any>;
+  movies: FirebaseListObservable<any[]> = null; // List of movie objects
+  movie: FirebaseListObservable<any> = null; // Single movie object
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, aDB: AngularFireDatabase, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, 
+    public alertCtrl: AlertController, 
+    public aDB: AngularFireDatabase, 
+    public actionSheetCtrl: ActionSheetController) 
+  {
     this.movies = aDB.list('/movies');
   }
 
@@ -81,16 +86,15 @@ addMovie(){
   }
 
 
-    openmovieDetail(movie: any) {
-        this.navCtrl.push(DetailsPage, movie);
-    }
-
-  // itemTapped(event, movie) {
-  //   this.navCtrl.push(DetailsPage, {
-  //     item: movie
-  //   });
-  // }
-
+  openmovieDetail(movie:any){
+      this.navCtrl.push(DetailsPage, movie)
+      .then( movie => {
+        if (movie) {
+          console.log(movie);
+        } else {
+          console.log("You got an error here in the movies file.");
+        }
+      })
+  }
 
 } // The End
-

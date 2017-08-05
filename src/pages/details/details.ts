@@ -19,7 +19,7 @@ export class DetailsPage {
     public actionSheetCtrl: ActionSheetController) 
   {
     this.movies = aDB.list('/movies');
-    this.movie.movieId = this.navParams.get('key');
+    this.movie.movieId = this.navParams.get('$key');
     this.movie.title = this.navParams.get('title');
     this.movie.year = this.navParams.get('year');
     this.movie.length = this.navParams.get('length');
@@ -203,4 +203,3 @@ updateMovie(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescri
 
 
 } // The End
-
