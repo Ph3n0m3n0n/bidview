@@ -9,8 +9,9 @@ import { MoviesPage } from '../movies/movies';
 })
 export class DetailsPage {
 
+  
   movies: FirebaseListObservable<any>; 
-  movie : { movieId: '', title: '', year: '', length: '', genre: '', description: '', actor: '', poster: '', thumbnail: ''};
+  movie = { movieId: '', title: '', year: '', length: '', genre: '', description: '', actor: '', poster: '', thumbnail: ''};
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -19,7 +20,7 @@ export class DetailsPage {
     public actionSheetCtrl: ActionSheetController) 
   {
     this.movies = aDB.list('/movies');
-    this.movie.movieId = this.navParams.get('$key');
+    this.movie.movieId = this.navParams.get('key');
     this.movie.title = this.navParams.get('title');
     this.movie.year = this.navParams.get('year');
     this.movie.length = this.navParams.get('length');
@@ -72,7 +73,7 @@ addMovie(){
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancelled action on.');
+            console.log('Cancel button clicked');
           }
         },
         {
@@ -95,7 +96,7 @@ addMovie(){
     prompt.present();
   }
 
-  showOptions(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescription, movieActor, moviePoster, movieThumbnail) {
+  showOptions(data) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'What do you want to do?',
       buttons: [
@@ -103,18 +104,18 @@ addMovie(){
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            this.removeMovie(movieId);
+            this.removeMovie(data);
           }
         }, {
           text: 'Edit',
           handler: () => {
-            this.updateMovie(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescription, movieActor, moviePoster, movieThumbnail);
+            this.updateMovie(data);
           }
         },{
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-              console.log('Cancelled action on ' + movieId + '.');
+              console.log('Cancelled');
           }
         }
       ]
@@ -123,12 +124,12 @@ addMovie(){
     actionSheet.present();
   }
 
-  removeMovie(movieId) {
-    this.movies.remove(movieId);
+  removeMovie(data) {
+    this.movies.remove(data);
   }
 
 
-updateMovie(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescription, movieActor, moviePoster, movieThumbnail) {
+updateMovie(data) {
   let prompt = this.alertCtrl.create({
     title: 'Movie',
     message: 'You are now in Edit mode',
@@ -141,50 +142,43 @@ updateMovie(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescri
       {
         name: 'year',
         placeholder: 'Year',
-        value: movieYear
       },
       {
         name: 'length',
         placeholder: 'Length',
-        value: movieLength
       },
       {
         name: 'genre',
         placeholder: 'Genre',
-        value: movieGenre
       },
       {
         name: 'description',
         placeholder: 'Description',
-        value: movieDescription
       },
       {
         name: 'actor',
         placeholder: 'Actor',
-        value: movieActor
       },
       {
         name: 'poster',
         placeholder: 'Image URL',
-        value: moviePoster
       },
       {
         name: 'thumbnail',
         placeholder: 'Thumbnail URL',
-        value: movieThumbnail
       },
     ],
     buttons: [
       {
         text: 'Cancel',
         handler: data => {
-          console.log('Cancelled action on ' + movieId + '.');
+          console.log('Cancelled editing the ' + data.title + ' movie.');
         }
       },
       {
         text: 'Save',
         handler: data => {
-          this.movies.update(movieId, {
+          this.movies.update(data, {
             title: data.title,
             year: data.year,
             length: data.length,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Movie } from '../movie/movie';
 import { DetailsPage } from '../details/details';
 
 @Component({
@@ -9,8 +10,8 @@ import { DetailsPage } from '../details/details';
 })
 export class MoviesPage {
 
-  movies: FirebaseListObservable<any[]> = null; // List of movie objects
-  movie: FirebaseListObservable<any> = null; // Single movie object
+  movies: FirebaseListObservable<any[]>;   
+  movie: FirebaseListObservable<any>;     
 
   constructor(public navCtrl: NavController, 
     public alertCtrl: AlertController, 
@@ -62,7 +63,7 @@ addMovie(){
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel button clicked');
+            console.log('Cancel button clicked on item ' + data.$key);
           }
         },
         {
@@ -86,15 +87,9 @@ addMovie(){
   }
 
 
-  openmovieDetail(movie){
-      this.navCtrl.push(DetailsPage, movie)
-      .then( movie => {
-        if (movie) {
-          console.log("I am passing the " + movie + " movie from movie.ts to details.ts.");
-        } else {
-          console.log("You got an error here in the movies file.");
-        }
-      })
+  openmovieDetail(data){ 
+      this.navCtrl.push(DetailsPage, data)
+          console.log("I am passing the " + data.$key + " movie from movie.ts to details.ts.");
   }
 
 } // The End
