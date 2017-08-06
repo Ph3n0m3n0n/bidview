@@ -10,7 +10,7 @@ import { MoviesPage } from '../movies/movies';
 export class DetailsPage {
 
   movies: FirebaseListObservable<any>; 
-  movie = { movieId: '', title: '', year: '', length: '', genre: '', description: '', actor: '', poster: '', thumbnail: ''};
+  movie : { movieId: '', title: '', year: '', length: '', genre: '', description: '', actor: '', poster: '', thumbnail: ''};
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -72,7 +72,7 @@ addMovie(){
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel button clicked');
+            console.log('Cancelled action on.');
           }
         },
         {
@@ -114,7 +114,7 @@ addMovie(){
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-              console.log('Cancelled');
+              console.log('Cancelled action on ' + movieId + '.');
           }
         }
       ]
@@ -178,7 +178,7 @@ updateMovie(movieId, movieTitle, movieYear, movieLength, movieGenre, movieDescri
       {
         text: 'Cancel',
         handler: data => {
-          console.log('Cancelled');
+          console.log('Cancelled action on ' + movieId + '.');
         }
       },
       {

@@ -86,11 +86,11 @@ addMovie(){
   }
 
 
-  openmovieDetail(movie:any){
+  openmovieDetail(movie){
       this.navCtrl.push(DetailsPage, movie)
       .then( movie => {
         if (movie) {
-          console.log(movie);
+          console.log("I am passing the " + movie + " movie from movie.ts to details.ts.");
         } else {
           console.log("You got an error here in the movies file.");
         }
